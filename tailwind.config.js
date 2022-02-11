@@ -1,3 +1,5 @@
+const { colors } = require('tailwindcss/colors')
+
 module.exports = {
   content: [
     "./src/App.vue",
@@ -6,7 +8,23 @@ module.exports = {
     "./src/views/*.vue"
   ],
   theme: {
-    extend: {},
+    
+      fontFamily: {
+        'poppins' : ['Poppins']
+      },
+
+      fontWeight: {
+        normal: '400',
+        semibold: '500',
+        bold: '700'
+      },
+
+      colors: {  
+        'gray': '#d1d5db',  
+        'white': '#fff',
+        'primary':'#0052ff'
+      }
+
   },
   plugins: [],
 }
