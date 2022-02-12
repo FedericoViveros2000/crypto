@@ -1,11 +1,11 @@
 <template>
   <div class="w-full">
 
-    <div class="w-full font-poppins grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+    <div class="w-full font-poppins grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5"  v-if="!isLoading">
 
       <div v-for="exchange in exchanges" :key="exchange.id">
 
-        <div class="w-full flex flex-col bg-white shadow-xl mt-5 rounded-lg  items-center p-5" v-if="!isLoading">
+        <div class="w-full flex flex-col bg-white shadow-xl mt-5 rounded-lg  items-center p-5">
 
           <figure class="rounded-full overflow-hidden w-24">
             <img :src="exchange.image" :alt="exchange.name" class="object-cover w-full">
@@ -23,29 +23,152 @@
 
         </div>
 
-        <div
-          class="animate-pulse bg-white p-2 sm:p-4 sm:h-64 rounded-2xl shadow-lg flex flex-col sm:flex-row gap-5 select-none "
-          v-else>
-          <div class="h-52 sm:h-full sm:w-72 rounded-xl bg-gray animate-pulse"></div>
-          <div class="flex flex-col flex-1 gap-5 sm:p-2">
-            <div class="flex flex-1 flex-col gap-3">
-              <div class="bg-gray w-full animate-pulse h-14 rounded-2xl"></div>
-              <div class="bg-gray w-full animate-pulse h-3 rounded-2xl"></div>
-              <div class="bg-gray w-full animate-pulse h-3 rounded-2xl"></div>
-              <div class="bg-gray w-full animate-pulse h-3 rounded-2xl"></div>
-              <div class="bg-gray w-full animate-pulse h-3 rounded-2xl"></div>
-            </div>
-            <div class="mt-auto flex gap-3">
-              <div class="bg-gray w-20 h-8 animate-pulse rounded-full"></div>
-              <div class="bg-gray w-20 h-8 animate-pulse rounded-full"></div>
-              <div class="bg-gray w-20 h-8 animate-pulse rounded-full ml-auto"></div>
-            </div>
-          </div>
-        </div>
-
       </div>
 
     </div>
+
+    <div class="w-full font-poppins grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5" v-else>
+
+     <!-- Cards que se muestran cuando el contenido este cargandose -->
+     
+        <div  class="animate-pulse w-full flex flex-col bg-white shadow-xl mt-5 rounded-lg p-5">
+          <div class="text-left leading-10 w-full">
+            <div class="animated-pulse bg-gray rounded-md h-36">.</div>
+            <p class="animate-pulse w-full h-5 mt-5 rounded-sm bg-gray"></p>
+            <p class="animate-pulse w-full h-3 mt-5 rounded-sm bg-gray"></p>
+            <p class="animate-pulse w-full h-3 mt-5 rounded-sm bg-gray"></p>
+            <a href="#" target="_blank"
+              class="animate-pulse block w-full h-10 mt-5 rounded-md bg-gray "
+              rel="noopener noreferrer">.</a>
+          </div>
+        </div>
+        <div  class="animate-pulse w-full flex flex-col bg-white shadow-xl mt-5 rounded-lg p-5">
+          <div class="text-left leading-10 w-full">
+            <div class="animated-pulse bg-gray rounded-md h-36">.</div>
+            <p class="animate-pulse w-full h-5 mt-5 rounded-sm bg-gray"></p>
+            <p class="animate-pulse w-full h-3 mt-5 rounded-sm bg-gray"></p>
+            <p class="animate-pulse w-full h-3 mt-5 rounded-sm bg-gray"></p>
+            <a href="#" target="_blank"
+              class="animate-pulse block w-full h-10 mt-5 rounded-md bg-gray "
+              rel="noopener noreferrer">.</a>
+          </div>
+        </div>
+        <div  class="animate-pulse w-full flex flex-col bg-white shadow-xl mt-5 rounded-lg p-5">
+          <div class="text-left leading-10 w-full">
+            <div class="animated-pulse bg-gray rounded-md h-36">.</div>
+            <p class="animate-pulse w-full h-5 mt-5 rounded-sm bg-gray"></p>
+            <p class="animate-pulse w-full h-3 mt-5 rounded-sm bg-gray"></p>
+            <p class="animate-pulse w-full h-3 mt-5 rounded-sm bg-gray"></p>
+            <a href="#" target="_blank"
+              class="animate-pulse block w-full h-10 mt-5 rounded-md bg-gray "
+              rel="noopener noreferrer">.</a>
+          </div>
+        </div>
+        <div  class="animate-pulse w-full flex flex-col bg-white shadow-xl mt-5 rounded-lg p-5">
+          <div class="text-left leading-10 w-full">
+            <div class="animated-pulse bg-gray rounded-md h-36">.</div>
+            <p class="animate-pulse w-full h-5 mt-5 rounded-sm bg-gray"></p>
+            <p class="animate-pulse w-full h-3 mt-5 rounded-sm bg-gray"></p>
+            <p class="animate-pulse w-full h-3 mt-5 rounded-sm bg-gray"></p>
+            <a href="#" target="_blank"
+              class="animate-pulse block w-full h-10 mt-5 rounded-md bg-gray "
+              rel="noopener noreferrer">.</a>
+          </div>
+        </div>
+        <div  class="animate-pulse w-full flex flex-col bg-white shadow-xl mt-5 rounded-lg p-5">
+          <div class="text-left leading-10 w-full">
+            <div class="animated-pulse bg-gray rounded-md h-36">.</div>
+            <p class="animate-pulse w-full h-5 mt-5 rounded-sm bg-gray"></p>
+            <p class="animate-pulse w-full h-3 mt-5 rounded-sm bg-gray"></p>
+            <p class="animate-pulse w-full h-3 mt-5 rounded-sm bg-gray"></p>
+            <a href="#" target="_blank"
+              class="animate-pulse block w-full h-10 mt-5 rounded-md bg-gray "
+              rel="noopener noreferrer">.</a>
+          </div>
+        </div>
+        <div  class="animate-pulse w-full flex flex-col bg-white shadow-xl mt-5 rounded-lg p-5">
+          <div class="text-left leading-10 w-full">
+            <div class="animated-pulse bg-gray rounded-md h-36">.</div>
+            <p class="animate-pulse w-full h-5 mt-5 rounded-sm bg-gray"></p>
+            <p class="animate-pulse w-full h-3 mt-5 rounded-sm bg-gray"></p>
+            <p class="animate-pulse w-full h-3 mt-5 rounded-sm bg-gray"></p>
+            <a href="#" target="_blank"
+              class="animate-pulse block w-full h-10 mt-5 rounded-md bg-gray "
+              rel="noopener noreferrer">.</a>
+          </div>
+        </div>
+        <div  class="animate-pulse w-full flex flex-col bg-white shadow-xl mt-5 rounded-lg p-5">
+          <div class="text-left leading-10 w-full">
+            <div class="animated-pulse bg-gray rounded-md h-36">.</div>
+            <p class="animate-pulse w-full h-5 mt-5 rounded-sm bg-gray"></p>
+            <p class="animate-pulse w-full h-3 mt-5 rounded-sm bg-gray"></p>
+            <p class="animate-pulse w-full h-3 mt-5 rounded-sm bg-gray"></p>
+            <a href="#" target="_blank"
+              class="animate-pulse block w-full h-10 mt-5 rounded-md bg-gray "
+              rel="noopener noreferrer">.</a>
+          </div>
+        </div>
+        <div  class="animate-pulse w-full flex flex-col bg-white shadow-xl mt-5 rounded-lg p-5">
+          <div class="text-left leading-10 w-full">
+            <div class="animated-pulse bg-gray rounded-md h-36">.</div>
+            <p class="animate-pulse w-full h-5 mt-5 rounded-sm bg-gray"></p>
+            <p class="animate-pulse w-full h-3 mt-5 rounded-sm bg-gray"></p>
+            <p class="animate-pulse w-full h-3 mt-5 rounded-sm bg-gray"></p>
+            <a href="#" target="_blank"
+              class="animate-pulse block w-full h-10 mt-5 rounded-md bg-gray "
+              rel="noopener noreferrer">.</a>
+          </div>
+        </div>
+        <div  class="animate-pulse w-full flex flex-col bg-white shadow-xl mt-5 rounded-lg p-5">
+          <div class="text-left leading-10 w-full">
+            <div class="animated-pulse bg-gray rounded-md h-36">.</div>
+            <p class="animate-pulse w-full h-5 mt-5 rounded-sm bg-gray"></p>
+            <p class="animate-pulse w-full h-3 mt-5 rounded-sm bg-gray"></p>
+            <p class="animate-pulse w-full h-3 mt-5 rounded-sm bg-gray"></p>
+            <a href="#" target="_blank"
+              class="animate-pulse block w-full h-10 mt-5 rounded-md bg-gray "
+              rel="noopener noreferrer">.</a>
+          </div>
+        </div>
+        <div  class="animate-pulse w-full flex flex-col bg-white shadow-xl mt-5 rounded-lg p-5">
+          <div class="text-left leading-10 w-full">
+            <div class="animated-pulse bg-gray rounded-md h-36">.</div>
+            <p class="animate-pulse w-full h-5 mt-5 rounded-sm bg-gray"></p>
+            <p class="animate-pulse w-full h-3 mt-5 rounded-sm bg-gray"></p>
+            <p class="animate-pulse w-full h-3 mt-5 rounded-sm bg-gray"></p>
+            <a href="#" target="_blank"
+              class="animate-pulse block w-full h-10 mt-5 rounded-md bg-gray "
+              rel="noopener noreferrer">.</a>
+          </div>
+        </div>
+        <div  class="animate-pulse w-full flex flex-col bg-white shadow-xl mt-5 rounded-lg p-5">
+          <div class="text-left leading-10 w-full">
+            <div class="animated-pulse bg-gray rounded-md h-36">.</div>
+            <p class="animate-pulse w-full h-5 mt-5 rounded-sm bg-gray"></p>
+            <p class="animate-pulse w-full h-3 mt-5 rounded-sm bg-gray"></p>
+            <p class="animate-pulse w-full h-3 mt-5 rounded-sm bg-gray"></p>
+            <a href="#" target="_blank"
+              class="animate-pulse block w-full h-10 mt-5 rounded-md bg-gray "
+              rel="noopener noreferrer">.</a>
+          </div>
+        </div>
+        <div  class="animate-pulse w-full flex flex-col bg-white shadow-xl mt-5 rounded-lg p-5">
+          <div class="text-left leading-10 w-full">
+            <div class="animated-pulse bg-gray rounded-md h-36">.</div>
+            <p class="animate-pulse w-full h-5 mt-5 rounded-sm bg-gray"></p>
+            <p class="animate-pulse w-full h-3 mt-5 rounded-sm bg-gray"></p>
+            <p class="animate-pulse w-full h-3 mt-5 rounded-sm bg-gray"></p>
+            <a href="#" target="_blank"
+              class="animate-pulse block w-full h-10 mt-5 rounded-md bg-gray "
+              rel="noopener noreferrer">.</a>
+          </div>
+        </div>
+       
+   
+
+
+    </div>
+
 
   </div>
 
@@ -81,7 +204,6 @@
 
             exchanges.value = await response.json();
 
-            console.log(page.value);
             isLoading.value = false;
 
           }
