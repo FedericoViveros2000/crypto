@@ -169,7 +169,6 @@
 
     </div>
 
-
   </div>
 
 </template>
@@ -190,7 +189,6 @@
       let exchanges = ref([]);
       let page = ref(20)
       let isLoading = ref(false)
-
 
       //Trayendo los exchanges disponibles para mostrar
       const getExchanges = async () => {

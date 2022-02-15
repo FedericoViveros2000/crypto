@@ -1,12 +1,14 @@
 const { colors } = require('tailwindcss/colors')
 
 module.exports = {
+  
   content: [
     "./src/App.vue",
     "./public/*.html",
     "./src/components/*.vue",
     "./src/views/*.vue"
   ],
+
   theme: {
     
       fontFamily: {
@@ -20,6 +22,7 @@ module.exports = {
       },
 
       colors: {  
+        'green': '#098551',
         'gray': '#d1d5db',  
         'white': '#fff',
         'primary':'#0052ff'
