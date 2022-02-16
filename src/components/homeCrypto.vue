@@ -11,7 +11,7 @@
         </div>
 
 
-        <table class="table-auto w-full" v-if="currency.length > 0">
+        <table class="table-auto w-full shadow-xl rounded-md" v-if="currency.length > 0">
 
             <thead>
                 <tr>
@@ -22,78 +22,31 @@
                 </tr>
             </thead>
 
-            <tbody v-for="(coin, index) in currency" :key="index">
+            <tbody >
 
-                <tr class="hover:bg-slate-400" >
+                <tr class="hover:bg-slate-400" v-for="(coin, index) in searchElementResult" :key="index">
 
-                    <td class="p-2">BTC / USDT</td>
+                    <td class="p-2">{{coin.symbol}}</td>
                     
-                    <td class="p-2">
+                    <td class="p-2" >
                         <span
-                            class="inline-block py-1 px-4 rounded-m">{{Intl.NumberFormat("en-Us").format(coin.BTCUSDT.close)}}</span>
+                            class="inline-block py-1 px-4 rounded-m" >{{Intl.NumberFormat("en-Us").format(coin.close)}}</span>
                     </td>
 
-                    <td class="p-2">{{Intl.NumberFormat("en-Us").format(coin.BTCUSDT.low)}}</td>
-                    <td class="p-2">{{Intl.NumberFormat("en-Us").format(coin.BTCUSDT.high)}}</td>
+                    <td class="p-2">{{Intl.NumberFormat("en-Us").format(coin.prevClose)}}</td>
+                    <td class="p-2">{{Intl.NumberFormat("en-Us").format(coin.high)}}</td>
+
+                    <td class="p-2">
+                        <span class="bg-green inline-block p-2 px-4 rounded-md text-white" v-if="coin.percentChange > 0">{{coin.percentChange}} %</span>   
+                        <span class="bg-red inline-block p-2 px-4 rounded-md text-white" v-else>{{coin.percentChange}} %</span>   
+                    </td>
+
+                    <td class="p-2">
+                        <button class="text-primary border-solid border-2 border-primary rounded-lg py-2 px-4"> <router-link to="detalles">Detalles</router-link> </button>
+                    </td>
 
                 </tr>
 
-                <tr class="hover:bg-slate-400" >
-
-                    <td class="p-2">BNB / USDT</td>
-                    
-                    <td class="p-2">
-                        <span
-                            class="inline-block py-1 px-4 rounded-m">{{Intl.NumberFormat("en-Us").format(coin.BNBUSDT.close)}}</span>
-                    </td>
-
-                    <td class="p-2">{{Intl.NumberFormat("en-Us").format(coin.BNBUSDT.low)}}</td>
-                    <td class="p-2">{{Intl.NumberFormat("en-Us").format(coin.BNBUSDT.high)}}</td>
-
-                </tr>
-
-                <tr class="hover:bg-slate-400" >
-
-                    <td class="p-2">ADA / USDT</td>
-                    
-                    <td class="p-2">
-                        <span
-                            class="inline-block py-1 px-4 rounded-m">{{Intl.NumberFormat("en-Us").format(coin.ADAUSDT.close)}}</span>
-                    </td>
-
-                    <td class="p-2">{{Intl.NumberFormat("en-Us").format(coin.ADAUSDT.low)}}</td>
-                    <td class="p-2">{{Intl.NumberFormat("en-Us").format(coin.ADAUSDT.high)}}</td>
-
-                </tr>
-
-                <tr class="hover:bg-slate-400" >
-
-                    <td class="p-2">ETH / USDT</td>
-                    
-                    <td class="p-2">
-                        <span
-                            class="inline-block py-1 px-4 rounded-m">{{Intl.NumberFormat("en-Us").format(coin.ETHUSDT.close)}}</span>
-                    </td>
-
-                    <td class="p-2">{{Intl.NumberFormat("en-Us").format(coin.ETHUSDT.low)}}</td>
-                    <td class="p-2">{{Intl.NumberFormat("en-Us").format(coin.ETHUSDT.high)}}</td>
-
-                </tr>
-
-                <tr class="hover:bg-slate-400" >
-
-                    <td class="p-2">SOL / USDT</td>
-                    
-                    <td class="p-2">
-                        <span
-                            class="inline-block py-1 px-4 rounded-m">{{Intl.NumberFormat("en-Us").format(coin.SOLUSDT.close)}}</span>
-                    </td>
-
-                    <td class="p-2">{{Intl.NumberFormat("en-Us").format(coin.SOLUSDT.low)}}</td>
-                    <td class="p-2">{{Intl.NumberFormat("en-Us").format(coin.SOLUSDT.high)}}</td>
-
-                </tr>
-    
             </tbody>
 
         </table>
@@ -141,6 +94,8 @@
 
         <button class="bg-primary py-2 px-4 inline-block text-white rounded-sm mt-4">Ver mas</button>
 
+    <router-view></router-view>
+    
     </article>
 
 
@@ -173,15 +128,15 @@
             const pares = computed(() => store.state.pares)
             //Propiedad computada para ir filtrando los elementos de acuerdo a la criptomoneda buscada
             const searchElementResult = computed(() => {
-                let filter = currency.value.filter(element => element.includes(searchElement.value))
+                let filter = currency.value.filter(coin => coin.symbol.includes(searchElement.value))
                 return filter;
             })
 
             //Al montar la aplicacion hacemos que se ejecute el metodo para traer todas las criptomonedas en una lista
             onMounted(() => {                
-                socket.on("my-event", (data) => {
+                socket.on("my-top-5", (data) => {
                     currency.value = []
-                    currency.value.push(data);
+                    currency.value = data;
                 });
             })
 

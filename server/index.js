@@ -16,14 +16,27 @@ const io = new Server(httpServer, {
 });
 
 const binance = require('./binance.config')
+let data = []
+io.on('connection', (socket) => {
 
-  io.on('connection', (socket) => {
+  binance.websockets.miniTicker(markets => {
+    socket.emit('my-event', markets)
+  });
+  
+  //Para obtener los datos especificos de ciertas criptomonedas
+  binance.websockets.prevDay(['BTCUSDT', 'BNBUSDT', 'ETHUSDT', 'SOLUSDT', 'ADAUSDT', 'USDT', 'LUNAUSDT', 'DOTUSDT', 'SHIBUSDT'] , (error, response) => {
 
-    binance.websockets.miniTicker(markets => {
-      socket.emit('my-event', markets)
-    });
+    data.push(response)
+
+    if (data.length === 9) {
+      let sortData = data.sort((a, b) => b.close - a.close)
+      socket.emit('my-top-5', sortData)
+    }else if(data.length > 9) {
+      data = []
+    }
 
   })
-
+  
+})
 
 httpServer.listen(3000);
