@@ -32,20 +32,22 @@
     setup() {
 
       const socket = io('http://localhost:3000/')
-      const datos = ref(0)
+      const datos = ref([])
       const testData = {
-        labels: ['Bitcoin'],
+        labels: ['Paris', 'Nîmes', 'Toulon', 'Perpignan', 'Autre'],
         datasets: [{
-          data: [datos.value],
+          data: [30, 40, 60, 70, 5],
           backgroundColor: ['#77CEFF', '#0079AF', '#123E6B', '#97B0C4', '#A5C8ED'],
         }, ],
       };
 
       onMounted(() => {
-        socket.on('my-top-5', (data) => {
+        socket.on('crypto-selected', (data) => {
           datos.value = []
-          let coin = data.filter(coin => coin.symbol === 'BTCUSDT')
-          datos.value = coin[0].close
+        console.log(data);
+          datos.value.push(data[0].chart);
+
+         
         })
       })
 

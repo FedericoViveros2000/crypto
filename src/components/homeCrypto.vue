@@ -6,44 +6,41 @@
 
             <label for="cryptoSearch" class="p-2 h-full"><i class="fa-solid fa-magnifying-glass"></i></label>
 
-            <input type="search" id="cryptoSearch" placeholder="Buscar moneda" class="w-full h-full p-2  text-sm"
+            <input type="search" id="cryptoSearch" placeholder="Buscar moneda" class="w-full h-full p-2  "
                 v-model="searchElement">
         </div>
 
 
-        <table class="table-auto w-full shadow-xl rounded-md" v-if="currency.length > 0">
+        <table class="table-auto w-full shadow-xl rounded-md  text-center" v-if="currency.length > 0">
 
             <thead>
                 <tr>
-                    <th>Simbolo</th>
-                    <th>Precio Actual</th>
-                    <th>Menor precio en 24hs</th>
-                    <th>Mayor precio en 24hs</th>
+                    <th scope="col" >Simbolo</th>
+                    <th scope="col" >Precio Actual</th>
+                    <th scope="col" >Cambio en 24hs</th>
                 </tr>
             </thead>
 
-            <tbody >
+            <tbody>
 
-                <tr class="hover:bg-slate-400" v-for="(coin, index) in searchElementResult" :key="index">
+                <tr class="hover:bg-hover" v-for="(coin, index) in searchElementResult" :key="index">
 
-                    <td class="p-2">{{coin.symbol}}</td>
+                    <td class="md:py-4 md:px-6  text-gray-900 whitespace-nowrap ">{{coin.symbol}}</td>
                     
-                    <td class="p-2" >
+                    <td class="md:py-4 md:px-6  text-gray-900 whitespace-nowrap" >
                         <span
                             class="inline-block py-1 px-4 rounded-m" >{{Intl.NumberFormat("en-Us").format(coin.close)}}</span>
                     </td>
 
-                    <td class="p-2">{{Intl.NumberFormat("en-Us").format(coin.prevClose)}}</td>
-                    <td class="p-2">{{Intl.NumberFormat("en-Us").format(coin.high)}}</td>
-
-                    <td class="p-2">
-                        <span class="bg-green inline-block p-2 px-4 rounded-md text-white" v-if="coin.percentChange > 0">{{coin.percentChange}} %</span>   
-                        <span class="bg-red inline-block p-2 px-4 rounded-md text-white" v-else>{{coin.percentChange}} %</span>   
+                 
+                    <td class=" text-gray-900 whitespace-nowrap py-3">
+                        <span class="bg-green inline-block px-3 py-2 md:px-4 rounded-md text-white" v-if="coin.percentChange > 0">{{coin.percentChange}} %</span>   
+                        <span class="bg-red inline-block px-3 py-2 md:px-4  rounded-md text-white" v-else>{{coin.percentChange}} %</span>   
                     </td>
 
-                    <td class="p-2">
-                        <button class="text-primary border-solid border-2 border-primary rounded-lg py-2 px-4"> <router-link to="detalles">Detalles</router-link> </button>
-                    </td>
+                    <!-- <td class="py-4 px-6  text-gray-900 whitespace-nowrap">
+                        <button class="text-primary border-solid border-2 border-primary hidden rounded-lg"> <router-link to="detalles">Detalles</router-link> </button>
+                    </td> -->
 
                 </tr>
 
@@ -135,6 +132,7 @@
             //Al montar la aplicacion hacemos que se ejecute el metodo para traer todas las criptomonedas en una lista
             onMounted(() => {                
                 socket.on("my-top-5", (data) => {
+                    
                     currency.value = []
                     currency.value = data;
                 });

@@ -2,7 +2,7 @@
   
   <div>
 
-      <ul class="flex justify-between items-center overflow-x-scroll min-w-full h-16 mb-7">
+      <ul class="flex justify-between items-center overflow-x-scroll min-w-full h-16 mb-10">
           <li class="min-w-fit mr-4"> <router-link to="/" class="bg-amber-400 p-3 rounded-md text-sm"> Criptomonedas  </router-link></li>
           <li class="min-w-fit mr-4"> <router-link to="/exchanges" class="bg-amber-400 p-3 rounded-md text-sm"> Plataformas de Intercambios  </router-link></li>
           <li class="min-w-fit mr-4"> <router-link to="/todas">Todas las criptomonedas</router-link> </li>

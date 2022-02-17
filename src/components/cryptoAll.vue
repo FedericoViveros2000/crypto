@@ -1,22 +1,20 @@
 <template>
     <section class="mt-4">
-        <table class="table-auto w-full">
+        <table class="table-auto w-full text-center">
 
             <thead>
                 <tr>
-                    <th>Simbolo</th>
-                    <th>Precio actual</th>
-                    <th>Menor precio en 24hs</th>
-                    <th>Mayor precio en 24hs</th>
+                    <th scope="col" >Simbolo</th>
+                    <th scope="col" >Precio Actual</th>
+                    <th scope="col" >Cambio en 24hs</th>
                 </tr>
             </thead>
-            <tbody v-for="(coin, index) in coins" :key="index">
+            <tbody>
 
-                <tr class="p-2">
-                    <td class="p-2">{{coin[0]}}</td>
-                    <td class="p-2">{{Intl.NumberFormat('en-Us').format(coin[1].close)}}</td>
-                    <td class="p-2">{{Intl.NumberFormat('en-Us').format(coin[1].low)}}</td>
-                    <td class="p-2">{{Intl.NumberFormat('en-Us').format(coin[1].high)}}</td>
+                <tr class="p-2" v-for="(coin, index) in coinsSort" :key="index">
+                    <td class="p-3">{{coin.symbol}}</td>
+                    <td class="p-3">{{coin.close}}</td>
+                    <td class="p-3"><p :class="{ 'bg-red rounded-sm py-2 text-white': coin.percentChange < 0, 'bg-green rounded-sm py-2 text-white':coin.percentChange > 0 }">{{coin.percentChange}}</p></td>
                 </tr>
 
             </tbody>
@@ -27,8 +25,10 @@
 <script>
     import {
         ref,
-        onMounted
+        onMounted,
+        computed
     } from 'vue'
+
     import {
         io
     } from 'socket.io-client'
@@ -41,19 +41,25 @@
 
             const socket = io('http://localhost:3000/')
 
+            const coinsSort = computed(() => {  
+                return [...coins.value].sort((a, b) => b[1].close - a[1].close)
+            })
+
             onMounted(() => {
 
                 socket.on('my-event', (data) => {
-                    coins.value = [];
-                    let coin = Object.entries(data);
-                    let coinsSort = coin.sort((a, b) => b[1].close - a[1].close)
-                    coins.value = coinsSort;
+                    coins.value = []
+                    /* coins.value = [];
+                    let dataTwo = Object.entries(data);
+                    coins.value = dataTwo */
+                    coins.value.push(data)
                 })
 
             })
 
             return {
-                coins
+                coins,
+                coinsSort
             }
 
         }
