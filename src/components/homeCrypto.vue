@@ -11,7 +11,7 @@
         </div>
 
 
-        <table class="table-auto w-full shadow-xl rounded-md  text-center" v-if="currency.length > 0">
+        <table class="table-auto w-full  text-center" v-if="currency.length > 0">
 
             <thead>
                 <tr>
@@ -23,7 +23,7 @@
 
             <tbody>
 
-                <tr class="hover:bg-hover" v-for="(coin, index) in searchElementResult" :key="index">
+                <tr class="hover:bg-hover rounded-md" v-for="(coin, index) in searchElementResult" :key="index">
 
                     <td class="md:py-4 md:px-6  text-gray-900 whitespace-nowrap ">{{coin.symbol}}</td>
                     

@@ -1,16 +1,19 @@
 const {
   info
 } = require("console");
+
 const express = require("express");
 const {
   createServer
 } = require("http");
+
 const {
   Server
 } = require("socket.io");
 
 const app = express();
 const httpServer = createServer(app);
+
 const io = new Server(httpServer, {
   cors: {
     origin: '*',
@@ -19,6 +22,7 @@ const io = new Server(httpServer, {
 });
 
 const binance = require('./binance.config')
+
 let data = []
 
 io.on('connection', (socket) => {
@@ -27,6 +31,10 @@ io.on('connection', (socket) => {
     socket.emit('my-event', response)
   });
 
+  // For all symbols:
+    binance.websockets.prevDay(false, (error, response) => {
+      socket.emit('all-crypto', response)
+    });
   //Para obtener los datos especificos de ciertas criptomonedas
   binance.websockets.prevDay(['BTCUSDT', 'BNBUSDT', 'ETHUSDT', 'SOLUSDT', 'ADAUSDT', 'USDT', 'LUNAUSDT', 'DOTUSDT', 'SHIBUSDT'], (error, response) => {
 
@@ -40,6 +48,7 @@ io.on('connection', (socket) => {
     }
 
   })
+
 
   binance.websockets.chart("BTCUSDT", "1m", (symbol, interval, chart) => {
     let tick = binance.last(chart);

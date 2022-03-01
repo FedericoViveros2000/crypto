@@ -9,15 +9,15 @@
                     <th scope="col" >Cambio en 24hs</th>
                 </tr>
             </thead>
-            <tbody>
 
-                <tr class="p-2" v-for="(coin, index) in coinsSort" :key="index">
+            <tbody>
+                <tr class="p-2" v-for="(coin, index) in coins" :key="index">
                     <td class="p-3">{{coin.symbol}}</td>
                     <td class="p-3">{{coin.close}}</td>
                     <td class="p-3"><p :class="{ 'bg-red rounded-sm py-2 text-white': coin.percentChange < 0, 'bg-green rounded-sm py-2 text-white':coin.percentChange > 0 }">{{coin.percentChange}}</p></td>
                 </tr>
-
             </tbody>
+
         </table>
     </section>
 </template>
@@ -25,8 +25,7 @@
 <script>
     import {
         ref,
-        onMounted,
-        computed
+        onMounted
     } from 'vue'
 
     import {
@@ -41,25 +40,25 @@
 
             const socket = io('http://localhost:3000/')
 
-            const coinsSort = computed(() => {  
-                return [...coins.value].sort((a, b) => b[1].close - a[1].close)
-            })
-
             onMounted(() => {
 
-                socket.on('my-event', (data) => {
-                    coins.value = []
-                    /* coins.value = [];
-                    let dataTwo = Object.entries(data);
-                    coins.value = dataTwo */
+                socket.on('all-crypto', (data) => {
+                    
                     coins.value.push(data)
+
+                    coins.value.forEach((coin, index) => {
+                        if (coin.symbol === data.symbol) {
+                            coins.value[index] = data;
+                        }
+                    })
+
+                    coins.value.sort((a, b) => b.close - a.close)
                 })
 
             })
 
             return {
-                coins,
-                coinsSort
+                coins
             }
 
         }
