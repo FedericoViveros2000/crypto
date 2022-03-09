@@ -549,10 +549,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   display: grid;
 }
 
-.hidden{
-  display: none;
-}
-
 .h-full{
   height: 100%;
 }
@@ -567,10 +563,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .h-5{
   height: 1.25rem;
-}
-
-.h-16{
-  height: 4rem;
 }
 
 .h-36{
@@ -676,19 +668,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-radius: 9999px;
 }
 
-.border-2{
-  border-width: 2px;
-}
-
-.border-solid{
-  border-style: solid;
-}
-
-.border-primary{
-  --tw-border-opacity: 1;
-  border-color: rgb(0 82 255 / var(--tw-border-opacity));
-}
-
 .bg-red{
   --tw-bg-opacity: 1;
   background-color: rgb(210 50 64 / var(--tw-bg-opacity));
@@ -756,24 +735,9 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-right: 0.75rem;
 }
 
-.py-4{
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-}
-
-.px-6{
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
-}
-
 .px-5{
   padding-left: 1.25rem;
   padding-right: 1.25rem;
-}
-
-.py-5{
-  padding-top: 1.25rem;
-  padding-bottom: 1.25rem;
 }
 
 .text-left{
@@ -815,11 +779,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
-.text-primary{
-  --tw-text-opacity: 1;
-  color: rgb(0 82 255 / var(--tw-text-opacity));
-}
-
 .shadow-xl{
   --tw-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);
@@ -833,6 +792,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 .hover\:bg-hover:hover{
   --tw-bg-opacity: 1;
   background-color: rgb(243 244 246 / var(--tw-bg-opacity));
+}
+
+.focus\:outline-none:focus{
+  outline: 2px solid transparent;
+  outline-offset: 2px;
 }
 
 @media (min-width: 640px){

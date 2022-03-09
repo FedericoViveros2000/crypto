@@ -6,7 +6,7 @@
 
             <label for="cryptoSearch" class="p-2 h-full"><i class="fa-solid fa-magnifying-glass"></i></label>
 
-            <input type="search" id="cryptoSearch" placeholder="Buscar moneda" class="w-full h-full p-2  "
+            <input type="search" id="cryptoSearch" placeholder="Buscar moneda" class="w-full h-full p-2 focus:outline-none"
                 v-model="searchElement">
         </div>
 
@@ -15,9 +15,9 @@
 
             <thead>
                 <tr>
-                    <th scope="col" >Simbolo</th>
-                    <th scope="col" >Precio Actual</th>
-                    <th scope="col" >Cambio en 24hs</th>
+                    <th scope="col">Simbolo</th>
+                    <th scope="col">Precio Actual</th>
+                    <th scope="col">Cambio en 24hs</th>
                 </tr>
             </thead>
 
@@ -32,15 +32,10 @@
                             class="inline-block py-1 px-4 rounded-m" >{{Intl.NumberFormat("en-Us").format(coin.close)}}</span>
                     </td>
 
-                 
                     <td class=" text-gray-900 whitespace-nowrap py-3">
                         <span class="bg-green inline-block px-3 py-2 md:px-4 rounded-md text-white" v-if="coin.percentChange > 0">{{coin.percentChange}} %</span>   
                         <span class="bg-red inline-block px-3 py-2 md:px-4  rounded-md text-white" v-else>{{coin.percentChange}} %</span>   
                     </td>
-
-                    <!-- <td class="py-4 px-6  text-gray-900 whitespace-nowrap">
-                        <button class="text-primary border-solid border-2 border-primary hidden rounded-lg"> <router-link to="detalles">Detalles</router-link> </button>
-                    </td> -->
 
                 </tr>
 
@@ -89,7 +84,7 @@
 
         </div>
 
-        <button class="bg-primary py-2 px-4 inline-block text-white rounded-sm mt-4">Ver mas</button>
+        <button class="bg-primary py-2 px-4 inline-block w-full text-white rounded-sm mt-4">Ver mas</button>
 
     <router-view></router-view>
     

@@ -1,6 +1,4 @@
-const {
-  info
-} = require("console");
+
 
 const express = require("express");
 const {
@@ -48,7 +46,6 @@ io.on('connection', (socket) => {
     }
 
   })
-
 
   binance.websockets.chart("BTCUSDT", "1m", (symbol, interval, chart) => {
     let tick = binance.last(chart);
